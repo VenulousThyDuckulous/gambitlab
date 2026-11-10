@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GambitLab — chess with Elo bots &amp; a match analyser</title>
+  <meta name="description" content="Play chess against Elo-rated bots, then dissect the game with accuracy scores, centipawn loss, an evaluation graph and blunder detection.">
+  <meta name="theme-color" content="#080b12">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230d1220'/%3E%3Ctext x='32' y='47' font-size='40' text-anchor='middle' fill='%238a9bff'%3E%E2%99%9E%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./" aria-label="GambitLab home">
+      <span class="brand-mark" aria-hidden="true">♞</span>
+      <span>
+        <strong>GambitLab</strong>
+        <small>Play the bot. Then face the truth.</small>
+      </span>
+    </a>
+    <nav class="header-links" aria-label="Project links">
+      <a href="https://github.com/VenulousThyDuckulous/gambitlab" target="_blank" rel="noopener">Source ↗</a>
+    </nav>
+  </header>
+
+  <main class="app">
+    <section class="board-column" aria-label="Chess board">
+      <div class="seat" id="seatTop"></div>
+
+      <div class="board-shell">
+        <div class="board" id="board" role="grid" aria-label="Chess board"></div>
+        <div class="promo" id="promo" hidden></div>
+      </div>
+
+      <div class="seat" id="seatBottom"></div>
+
+      <div class="review-bar" id="reviewBar" hidden>
+        <button type="button" class="icon-btn" id="reviewPrev" aria-label="Previous move">←</button>
+        <span id="reviewText"></span>
+        <button type="button" class="icon-btn" id="reviewNext" aria-label="Next move">→</button>
+        <button type="button" class="btn ghost" id="reviewLive">Back to game</button>
+      </div>
+    </section>
+
+    <aside class="rail">
+      <section class="card setup-card">
+        <div class="card-heading">
+          <h2>New match</h2>
+          <span class="pill">Local</span>
+        </div>
+        <div class="select-row">
+          <label for="whiteSelect">White
+            <select id="whiteSelect"></select>
+          </label>
+          <span class="vs" aria-hidden="true">vs</span>
+          <label for="blackSelect">Black
+            <select id="blackSelect"></select>
+          </label>
+        </div>
+        <button type="button" class="btn primary wide" id="newMatch">Start match</button>
+        <p class="hint">Pick a human or an Elo bot on either side. Changes apply when you start a match.</p>
+      </section>
+
+      <section class="card game-card">
+        <div class="card-heading">
+          <h2>Match</h2>
+          <div class="status" aria-live="polite">
+            <span class="status-dot" id="statusDot" aria-hidden="true"></span>
+            <span id="statusText">White to move</span>
+          </div>
+        </div>
+
+        <div class="moves" id="moves" aria-label="Move list"></div>
+
+        <div class="game-actions">
+          <button type="button" class="btn ghost" id="undo">Undo</button>
+          <button type="button" class="btn ghost" id="resign">Resign</button>
+          <button type="button" class="btn ghost" id="flip">Flip</button>
+          <button type="button" class="btn ghost" id="pause" hidden>Pause bots</button>
+        </div>
+      </section>
+
+      <section class="card analysis-card" id="analysisCard">
+        <div class="card-heading">
+          <h2>Match analyser</h2>
+          <span class="pill">Engine eval</span>
+        </div>
+        <div id="analysis"></div>
+      </section>
+    </aside>
+  </main>
+
+  <footer class="site-footer">
+    <p>Hand-written 0x88 chess engine · no Stockfish, no third-party libraries</p>
+  </footer>
+
+  <script type="module" src="js/app.js"></script>
+</body>
+</html>
