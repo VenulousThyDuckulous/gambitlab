@@ -1,0 +1,11 @@
+{
+  "name": "gambitlab",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Chess against Elo-rated bots, with a post-game match analyser.",
+  "scripts": {
+    "start": "python3 -m http.server 3002",
+    "test": "node tests/perft.mjs"
+  }
+}
